@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Demo jsonp</title>
+		<meta charset="utf-8" />
+		<script src="http://kitsione.kitsi.biz/no-amd-yet.js"></script>
+
+		<script>module("tripledollar")</script>
+		<script type="application/javascript" src="http://steenk.github.io/tripledollar.js"></script>
+
+		<script>module("jsonp")</script>
+		<script type="application/javascript" src="jsonp.js"></script>
+	</head>
+	<body>
+		<script>
+			require(['tripledollar', 'jsonp'], function ($$$, jsonp) {
+
+				jsonp('http://kitsione.kitsi.biz/hello?callback=hello', function (data) {
+					document.querySelector('.output').textContent = data.hello;
+				});
+				$$$.appendToDoc (
+				['h1', 'Demo jsonp'],
+				['div.output']
+				)
+			})
+		</script>
+	</body>
+</html>

@@ -1,4 +1,4 @@
-/* kitsi jsonp 0.2.1 */
+/* kitsi jsonp 0.2.2 */
 define(function () {
 	return  function (url, callback) {
 		var res, cb, r = url.match(/[?&]callback=(.+)/);
@@ -7,7 +7,8 @@ define(function () {
 			cb = r[1];
 		} else {
 			cb = id;
-			url += '&callback=' + cb;
+			url += url.indexOf('?') ? '&' : '?';
+			url += 'callback=' + cb;
 		}
 		window[cb] = function (data) {
 			res = JSON.parse(data);

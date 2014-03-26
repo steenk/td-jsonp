@@ -15,7 +15,7 @@
 		<script>
 			require(['tripledollar', 'jsonp'], function ($$$, jsonp) {
 
-				jsonp('http://kitsione.kitsi.biz/hello', function (data) {
+				jsonp('http://kitsione.kitsi.biz/hello?callback=hello', function (data) {
 					document.querySelector('.output').textContent = data.hello;
 				});
 				$$$.appendToDoc (

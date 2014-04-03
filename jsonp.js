@@ -1,13 +1,13 @@
-/* kitsi jsonp 0.2.2 */
+/* kitsi jsonp 0.2.3 */
 define(function () {
 	return  function (url, callback) {
-		var res, cb, r = url.match(/[?&]callback=(.+)/);
+		var res, cb, r = url.match(/[?&]callback=([^&]+)/);
 		var id = 'script' + (Math.random()*67108864|0).toString(16);
 		if (r) {
 			cb = r[1];
 		} else {
 			cb = id;
-			url += url.indexOf('?') ? '&' : '?';
+			url += url.indexOf('?') !== -1 ? '&' : '?';
 			url += 'callback=' + cb;
 		}
 		window[cb] = function (data) {

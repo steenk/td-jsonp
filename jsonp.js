@@ -1,4 +1,4 @@
-/* kitsi jsonp 0.2.4 */
+/* kitsi jsonp 0.2.6 */
 define(function () {
 	return  function (url, callback) {
 		var res, cb, r = url.match(/[?&]callback=([^&]+)/);
@@ -10,8 +10,11 @@ define(function () {
 			url += url.indexOf('?') !== -1 ? '&' : '?';
 			url += 'callback=' + cb;
 		}
-		window[cb] = function (data) {
-			res = typeof data === 'string' ? JSON.parse(data) : data;
+		var tempCb = typeof window[cb] === 'undefined' ? true : false;
+		if (tempCb) {
+			window[cb] = function (data) {
+				try {res = JSON.parse(data)} catch (e) {res = data};
+			}
 		}
   		var script = document.createElement('script');
     	script.type = 'text/javascript';
@@ -20,7 +23,9 @@ define(function () {
     	script.id = id;
     	script.onreadystatechange = script.onload = function() {
         	script.parentNode.removeChild(document.getElementById(id));
-			delete window[cb];
+			if (tempCb) {
+				delete window[cb];
+			}
         	callback && callback(res);
     	};
     	(document.body || document.head).appendChild(script);

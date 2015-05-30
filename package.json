@@ -1,0 +1,22 @@
+{
+  "name": "td-jsonp",
+  "version": "0.2.6",
+  "description": "Simple JSONP implementation",
+  "main": "jsonp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/steenk/td-jsonp.git"
+  },
+  "keywords": [
+    "jsonp"
+  ],
+  "author": "steenk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/steenk/td-jsonp/issues"
+  },
+  "homepage": "https://github.com/steenk/td-jsonp"
+}

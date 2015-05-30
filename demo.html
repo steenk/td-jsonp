@@ -4,23 +4,35 @@
 		<title>Demo jsonp</title>
 		<meta charset="utf-8" />
 		<script src="http://kitsione.kitsi.biz/no-amd-yet.js"></script>
-
-		<script>module("tripledollar")</script>
 		<script type="application/javascript" src="http://steenk.github.io/tripledollar.js"></script>
-
-		<script>module("jsonp")</script>
 		<script type="application/javascript" src="jsonp.js"></script>
 	</head>
 	<body>
 		<script>
 			require(['tripledollar', 'jsonp'], function ($$$, jsonp) {
 
+				// explicitly tell what callback name to use
 				jsonp('http://kitsione.kitsi.biz/hello?callback=hello', function (data) {
-					document.querySelector('.output').textContent = data.hello;
+					document.querySelector('.output1').textContent = data.hello;
 				});
+
+				// let jsonp generate a callback name
+				jsonp('https://steenk.cloudant.com/hello/hello', function (data) {
+					document.querySelector('.output2').textContent = data.hello;
+				});
+
+				// use a global callback
+				jsonp('https://steenk.cloudant.com/hello/hello?callback=handle');
+
+				window.handle = function (data) {
+					document.querySelector('.output3').textContent = data.hello;
+				}
+
 				$$$.appendToDoc (
-				['h1', 'Demo jsonp'],
-				['div.output']
+					['h1', 'Demo jsonp'],
+					['div.output1'],
+					['div.output2'],
+					['div.output3']
 				)
 			})
 		</script>

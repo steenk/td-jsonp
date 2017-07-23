@@ -1,6 +1,6 @@
 {
   "name": "td-jsonp",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Simple JSONP implementation",
   "main": "jsonp.js",
   "scripts": {

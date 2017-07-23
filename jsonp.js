@@ -1,6 +1,6 @@
-/* kitsi jsonp 0.2.6 */
+/* kitsi jsonp 0.2.7 */
 define(function () {
-	return  function (url, callback) {
+	return  function (url, callback, arg) {
 		var res, cb, r = url.match(/[?&]callback=([^&]+)/);
 		var id = 'script' + (Math.random()*67108864|0).toString(16);
 		if (r) {
@@ -26,7 +26,7 @@ define(function () {
 			if (tempCb) {
 				delete window[cb];
 			}
-        	callback && callback(res);
+        	callback && callback(res, arg);
     	};
     	(document.body || document.head).appendChild(script);
 	}
